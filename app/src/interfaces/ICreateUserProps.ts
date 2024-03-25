@@ -1,4 +1,4 @@
-import { PersonType } from "@prisma/client";
+import { PersonType } from '@prisma/client';
 
 export interface ICreateUserProps {
     type: PersonType;
