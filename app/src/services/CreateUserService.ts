@@ -28,28 +28,6 @@ export default class CreateUserService {
       state: userBody.state,
     };
 
-    let userExists;
-
-    if (userBody.type === 'PHYSICAL') {
-      userExists = await prismaClient.user.findFirst({
-        where: {
-          cpf: userBody.cpf,
-        },
-      });
-    }
-
-    if (userBody.type === 'JURIDICAL') {
-      userExists = await prismaClient.user.findFirst({
-        where: {
-          cpf: userBody.cnpj,
-        },
-      });
-    }
-
-    if (userExists) {
-      throw new AppError('User is already registered.', 400)
-    }
-
     const createdUser = await prismaClient.user.create({
       data: {
         ...userData,

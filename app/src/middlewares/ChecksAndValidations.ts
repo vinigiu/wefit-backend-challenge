@@ -12,43 +12,39 @@ export default class CheckAndValidations {
     const bodyData = req.body;
 
     if (!bodyData.type)
-      throw new AppError("Necessário definir o tipo de pessoa.", 400);
+      throw new AppError('Type of person is needed.', 400);
 
-    if (bodyData.type == "JURIDICAL" && !bodyData.cnpj)
-      throw new AppError("Necessário informar o CNPJ de Pessoa Jurídica.", 400);
+    if (bodyData.type == 'JURIDICAL' && !bodyData.cnpj)
+      throw new AppError('CNPJ is needed for Juridical type of person.', 400);
 
-    if (!bodyData.cpf) throw new AppError("Necessário informar o CPF.", 400);
+    if (!bodyData.cpf) throw new AppError('CPF is needed.', 400);
 
-    if (!bodyData.name) throw new AppError("Necessário informar o nome.", 400);
+    if (!bodyData.name) throw new AppError('Name is needed.', 400);
 
-    if (!bodyData.celPhone)
-      throw new AppError(
-        "Necessário informar o número do telefone celular.",
-        400
-      );
+    if (!bodyData.celPhone) throw new AppError('Cel Phone is needed.', 400);
 
     if (!bodyData.telPhone)
-      throw new AppError("Necessário informar o número do telefone fixo.", 400);
+      throw new AppError('Tel Phone is needed.', 400);
 
     if (!bodyData.email)
-      throw new AppError("Necessário informar o e-mail.", 400);
+      throw new AppError('E-mail is needed.', 400);
 
-    if (!bodyData.cep) throw new AppError("Necessário informar o cep.", 400);
+    if (!bodyData.cep) throw new AppError('CEP is needed.', 400);
 
     if (!bodyData.streetName)
-      throw new AppError("Necessário informar o nome da rua no endereço.", 400);
+      throw new AppError('Street Name is needed.', 400);
 
     if (!bodyData.streetNumber)
-      throw new AppError("Necessário informar o número no endereço.", 400);
+      throw new AppError('Address number is needed.', 400);
 
     if (!bodyData.neighborhood)
-      throw new AppError("Necessário informar o bairro no endereço.", 400);
+      throw new AppError('Neighborhood is needed.', 400);
 
     if (!bodyData.city)
-      throw new AppError("Necessário informar a cidade de endereço.", 400);
+      throw new AppError('City is needed.', 400);
 
     if (!bodyData.state)
-      throw new AppError("Necessário informar o estado de endereço.", 400);
+      throw new AppError('State is needed.', 400);
 
     next();
   }
@@ -65,17 +61,17 @@ export default class CheckAndValidations {
       });
 
       if (userEmailAlreadyRegistered)
-        throw new AppError("E-mail já cadastrado.", 400);
+        throw new AppError('This e-mail is already registered.', 400);
 
       if (!sanitizeAndValidate.validateEmail(bodyData.email))
-        throw new AppError("E-mail inválido", 400);
+        throw new AppError('Invalid e-mail.', 400);
 
       // Valida se tipo de pessoa é um dos previstos.
       if (!(bodyData.type in PersonType))
-        throw new AppError("Tipo de Pessoa inválido", 400);
+        throw new AppError('Invalid person type.', 400);
 
       // Valida CNPJ se Pessoa Jurídica
-      if (bodyData.type === "JURIDICAL") {
+      if (bodyData.type === 'JURIDICAL') {
         const cnpjAreadyRegistered = await prismaClient.user.findUnique({
           where: {
             cnpj: bodyData.cnpj,
@@ -83,36 +79,36 @@ export default class CheckAndValidations {
         });
 
         if (cnpjAreadyRegistered)
-          throw new AppError("CNPJ já cadastrado.", 400);
+          throw new AppError('This CNPJ is already registered.', 400);
 
         if (!sanitizeAndValidate.validateCNPJ(bodyData.cnpj))
-          throw new AppError("CNPJ inválido", 400);
+          throw new AppError('Invalid CNPJ', 400);
       }
 
       // Valida CPF se Pessoa Física
-      if (bodyData.type === "PHYSICAL") {
+      if (bodyData.type === 'PHYSICAL') {
         const cpfAlreadyRegisteredOnPhysicalType =
           await prismaClient.user.findFirst({
             where: {
-              type: "PHYSICAL",
+              type: 'PHYSICAL',
               cpf: bodyData.cpf,
             },
           });
 
         if (cpfAlreadyRegisteredOnPhysicalType)
-          throw new AppError("CPF já cadastrado para Pessoa Física.", 400);
+          throw new AppError('This CPF is already in use.', 400);
 
         if (!sanitizeAndValidate.validateCPF(bodyData.cpf))
-          throw new AppError("CPF inválido", 400);
+          throw new AppError('Invalid CPF.', 400);
       }
 
       // Valida CEP
       if (!sanitizeAndValidate.validateCEP(bodyData.cep))
-        throw new AppError("CEP inválido", 400);
+        throw new AppError('Invalid CEP.', 400);
 
       // Valida se sigla do estado é uma sigla dos estados brasileiros.
       if (!sanitizeAndValidate.validateState(bodyData.state))
-        throw new AppError("Estado inválido", 400);
+        throw new AppError('Invalid state.', 400);
 
       next();
     } catch (error) {
