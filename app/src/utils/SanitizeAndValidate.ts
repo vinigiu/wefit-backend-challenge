@@ -38,7 +38,8 @@ export default class SanitizeAndValidate {
     const digitsOnly = /^\d{11}$/.test(value);
 
     if (
-      value.length != 11 ||
+      value.length < 11 ||
+      value.length > 14 ||
       value == "000.000.000-00" ||
       value == "111.111.111-11" ||
       value == "222.222.222-22" ||
