@@ -53,7 +53,6 @@ export default class CheckAndValidations {
     try {
       const bodyData = req.body;
 
-      // Valida se e-mail é único e se está em formato válido
       const userEmailAlreadyRegistered = await prismaClient.user.findUnique({
         where: {
           email: bodyData.email,
@@ -66,11 +65,9 @@ export default class CheckAndValidations {
       if (!sanitizeAndValidate.validateEmail(bodyData.email))
         throw new AppError('Invalid e-mail.', 400);
 
-      // Valida se tipo de pessoa é um dos previstos.
       if (!(bodyData.type in PersonType))
         throw new AppError('Invalid person type.', 400);
 
-      // Valida CNPJ se Pessoa Jurídica
       if (bodyData.type === 'JURIDICAL') {
         const cnpjAreadyRegistered = await prismaClient.user.findUnique({
           where: {
@@ -85,7 +82,6 @@ export default class CheckAndValidations {
           throw new AppError('Invalid CNPJ', 400);
       }
 
-      // Valida CPF se Pessoa Física
       if (bodyData.type === 'PHYSICAL') {
         const cpfAlreadyRegisteredOnPhysicalType =
           await prismaClient.user.findFirst({
@@ -102,11 +98,9 @@ export default class CheckAndValidations {
           throw new AppError('Invalid CPF.', 400);
       }
 
-      // Valida CEP
       if (!sanitizeAndValidate.validateCEP(bodyData.cep))
         throw new AppError('Invalid CEP.', 400);
 
-      // Valida se sigla do estado é uma sigla dos estados brasileiros.
       if (!sanitizeAndValidate.validateState(bodyData.state))
         throw new AppError('Invalid state.', 400);
 
