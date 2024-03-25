@@ -1,13 +1,13 @@
-import { Request, Response } from "express";
-import UserController from "../../controllers/UserController";
-import CreateUserService from "../../services/CreateUserService";
+import { Request, Response } from 'express';
+import UserController from '../../controllers/UserController';
+import CreateUserService from '../../services/CreateUserService';
 
-jest.mock("../../services/CreateUserService", () => ({
+jest.mock('../../services/CreateUserService', () => ({
   __esModule: true,
   default: jest.fn(),
 }));
 
-describe("User Controller", () => {
+describe('User Controller', () => {
   let mockRequest: Partial<Request>;
   let mockResponse: Partial<Response>;
   let userController: UserController;
@@ -16,19 +16,19 @@ describe("User Controller", () => {
   beforeEach(() => {
     mockRequest = {
       body: {
-        type: "PHYSICAL",
-        name: "John Doe",
-        cpf: "12345678900",
-        celPhone: "11987560254",
-        telPhone: "1139876543",
-        email: "john.doe@gmail.com",
-        cep: "01234-567",
-        streetName: "Rua dos Bosques",
-        streetNumber: "1234",
-        complement: "ap23",
-        neighborhood: "Barra Rasa",
-        city: "São Paulo",
-        state: "SP",
+        type: 'PHYSICAL',
+        name: 'John Doe',
+        cpf: '12345678900',
+        celPhone: '11987560254',
+        telPhone: '1139876543',
+        email: 'john.doe@gmail.com',
+        cep: '01234-567',
+        streetName: 'Rua dos Bosques',
+        streetNumber: '1234',
+        complement: 'ap23',
+        neighborhood: 'Barra Rasa',
+        city: 'São Paulo',
+        state: 'SP',
       },
     };
 
@@ -50,27 +50,27 @@ describe("User Controller", () => {
     jest.clearAllMocks();
   });
 
-  describe("create", () => {
-    it("should create a user successfully", async () => {
+  describe('create', () => {
+    it('should create a user successfully', async () => {
       const expectedResult = {
         createdUser: {
           id: 1,
-          type: "PHYSICAL",
-          name: "John Doe",
-          cpf: "12345678900",
-          celPhone: "11987560254",
-          telPhone: "1139876543",
-          email: "john.doe@gmail.com",
+          type: 'PHYSICAL',
+          name: 'John Doe',
+          cpf: '12345678900',
+          celPhone: '11987560254',
+          telPhone: '1139876543',
+          email: 'john.doe@gmail.com',
         },
         createUserAddress: {
           id: 1,
-          cep: "01234-567",
-          streetName: "Rua dos Bosques",
-          streetNumber: "1234",
-          complement: "ap23",
-          neighborhood: "Barra Rasa",
-          city: "São Paulo",
-          state: "SP",
+          cep: '01234-567',
+          streetName: 'Rua dos Bosques',
+          streetNumber: '1234',
+          complement: 'ap23',
+          neighborhood: 'Barra Rasa',
+          city: 'São Paulo',
+          state: 'SP',
         },
       };
       mockExecute.mockResolvedValueOnce(expectedResult);
@@ -81,19 +81,19 @@ describe("User Controller", () => {
       );
 
       expect(mockExecute).toHaveBeenCalledWith({
-        type: "PHYSICAL",
-        name: "John Doe",
-        cpf: "12345678900",
-        celPhone: "11987560254",
-        telPhone: "1139876543",
-        email: "john.doe@gmail.com",
-        cep: "01234-567",
-        streetName: "Rua dos Bosques",
-        streetNumber: "1234",
-        complement: "ap23",
-        neighborhood: "Barra Rasa",
-        city: "São Paulo",
-        state: "SP",
+        type: 'PHYSICAL',
+        name: 'John Doe',
+        cpf: '12345678900',
+        celPhone: '11987560254',
+        telPhone: '1139876543',
+        email: 'john.doe@gmail.com',
+        cep: '01234-567',
+        streetName: 'Rua dos Bosques',
+        streetNumber: '1234',
+        complement: 'ap23',
+        neighborhood: 'Barra Rasa',
+        city: 'São Paulo',
+        state: 'SP',
       });
       expect(mockResponse!.status).toHaveBeenCalledWith(200);
       expect(mockResponse!.json).toHaveBeenCalledWith(expectedResult);

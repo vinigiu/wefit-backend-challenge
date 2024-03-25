@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
-import { ICreateUserProps } from "../interfaces/ICreateUserProps";
-import { CreateUserReturnType } from "../interfaces/types/CreateUserReturnType";
-import AppError from "../libs/errors/AppError";
-import SanitizeAndValidate from "../utils/SanitizeAndValidate";
+import { PrismaClient } from '@prisma/client';
+import { ICreateUserProps } from '../interfaces/ICreateUserProps';
+import { CreateUserReturnType } from '../interfaces/types/CreateUserReturnType';
+import AppError from '../libs/errors/AppError';
+import SanitizeAndValidate from '../utils/SanitizeAndValidate';
 
 const prismaClient = new PrismaClient();
 const sanitizeAndValidate = new SanitizeAndValidate();

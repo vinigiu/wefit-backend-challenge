@@ -1,4 +1,4 @@
-import SanitizeAndValidate from "../../utils/SanitizeAndValidate";
+import SanitizeAndValidate from '../../utils/SanitizeAndValidate';
 
 describe('SanitizeAndValidate', () => {
   let sanitizeAndValidate: SanitizeAndValidate;

@@ -1,18 +1,18 @@
-import AppError from "../libs/errors/AppError";
+import AppError from '../libs/errors/AppError';
 
 export default class SanitizeAndValidate {
   public sanitizePhoneNumber(value: string): string {
-    const cleanedNumber = value.replace(/[^\d]/g, "");
+    const cleanedNumber = value.replace(/[^\d]/g, '');
 
     if (cleanedNumber.length === 10 || cleanedNumber.length === 11) {
       return cleanedNumber;
     } else {
-      throw new AppError("Número de telefone inválido", 400);
+      throw new AppError('Número de telefone inválido', 400);
     }
   }
 
   public validateCEP(value: string): boolean {
-    const cleanedCEP = value.replace(/[^\d]/g, "");
+    const cleanedCEP = value.replace(/[^\d]/g, '');
 
     // Verifica se o CEP possui exatamente 8 dígitos
     return /^\d{8}$/.test(cleanedCEP);
@@ -40,26 +40,26 @@ export default class SanitizeAndValidate {
     if (
       value.length < 11 ||
       value.length > 14 ||
-      value == "00000000000" ||
-      value == "000.000.000-00" ||
-      value == "11111111111" ||
-      value == "111.111.111-11" ||
-      value == "22222222222" ||
-      value == "222.222.222-22" ||
-      value == "33333333333" ||
-      value == "333.333.333-33" ||
-      value == "44444444444" ||
-      value == "444.444.444-44" ||
-      value == "55555555555" ||
-      value == "555.555.555-55" ||
-      value == "66666666666" ||
-      value == "666.666.666-66" ||
-      value == "77777777777" ||
-      value == "777.777.777-77" ||
-      value == "88888888888" ||
-      value == "888.888.888-88" ||
-      value == "99999999999" ||
-      value == "999.999.999-99"
+      value == '00000000000' ||
+      value == '000.000.000-00' ||
+      value == '11111111111' ||
+      value == '111.111.111-11' ||
+      value == '22222222222' ||
+      value == '222.222.222-22' ||
+      value == '33333333333' ||
+      value == '333.333.333-33' ||
+      value == '44444444444' ||
+      value == '444.444.444-44' ||
+      value == '55555555555' ||
+      value == '555.555.555-55' ||
+      value == '66666666666' ||
+      value == '666.666.666-66' ||
+      value == '77777777777' ||
+      value == '777.777.777-77' ||
+      value == '88888888888' ||
+      value == '888.888.888-88' ||
+      value == '99999999999' ||
+      value == '999.999.999-99'
     ) {
       return false;
     }
@@ -81,59 +81,59 @@ export default class SanitizeAndValidate {
 
   public validateState(value: string): boolean {
     switch (value) {
-      case "AC":
+      case 'AC':
         return true;
-      case "AL":
+      case 'AL':
         return true;
-      case "AP":
+      case 'AP':
         return true;
-      case "AM":
+      case 'AM':
         return true;
-      case "BA":
+      case 'BA':
         return true;
-      case "CE":
+      case 'CE':
         return true;
-      case "DF":
+      case 'DF':
         return true;
-      case "ES":
+      case 'ES':
         return true;
-      case "GO":
+      case 'GO':
         return true;
-      case "MA":
+      case 'MA':
         return true;
-      case "MT":
+      case 'MT':
         return true;
-      case "MS":
+      case 'MS':
         return true;
-      case "MG":
+      case 'MG':
         return true;
-      case "PA":
+      case 'PA':
         return true;
-      case "PB":
+      case 'PB':
         return true;
-      case "PR":
+      case 'PR':
         return true;
-      case "PE":
+      case 'PE':
         return true;
-      case "PI":
+      case 'PI':
         return true;
-      case "RJ":
+      case 'RJ':
         return true;
-      case "RN":
+      case 'RN':
         return true;
-      case "RS":
+      case 'RS':
         return true;
-      case "RO":
+      case 'RO':
         return true;
-      case "RR":
+      case 'RR':
         return true;
-      case "SC":
+      case 'SC':
         return true;
-      case "SP":
+      case 'SP':
         return true;
-      case "SE":
+      case 'SE':
         return true;
-      case "TO":
+      case 'TO':
         return true;
       default:
         return false;

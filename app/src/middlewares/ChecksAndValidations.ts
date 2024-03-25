@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
-import { PersonType } from "@prisma/client";
-import { Request, Response, NextFunction } from "express";
-import AppError from "../libs/errors/AppError";
-import SanitizeAndValidate from "../utils/SanitizeAndValidate";
+import { PrismaClient } from '@prisma/client';
+import { PersonType } from '@prisma/client';
+import { Request, Response, NextFunction } from 'express';
+import AppError from '../libs/errors/AppError';
+import SanitizeAndValidate from '../utils/SanitizeAndValidate';
 
 const prismaClient = new PrismaClient();
 const sanitizeAndValidate = new SanitizeAndValidate();

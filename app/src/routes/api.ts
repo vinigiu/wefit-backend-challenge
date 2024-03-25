@@ -17,7 +17,7 @@ appRouter.post(
 appRouter.get(
     '/ping',
     (req, res) => {
-        return res.send("pong");
+        return res.send('pong');
     }
 );
 
