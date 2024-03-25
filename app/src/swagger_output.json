@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "User Registration API",
+    "description": "Provides resources to interact with User Registration API",
+    "version": "1.0.0"
+  },
+  "host": "localhost:4568",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/user": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "example": "any"
+                },
+                "cnpj": {
+                  "example": "any"
+                },
+                "cpf": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "celPhone": {
+                  "example": "any"
+                },
+                "telPhone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "cep": {
+                  "example": "any"
+                },
+                "streetName": {
+                  "example": "any"
+                },
+                "streetNumber": {
+                  "example": "any"
+                },
+                "neighborhood": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/v1/ping": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
