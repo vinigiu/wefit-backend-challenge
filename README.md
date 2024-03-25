@@ -51,3 +51,24 @@ o docker-compose vai criar um container de um MySQL e você poderá acessar via 
 ```
     npm run test
 ``` 
+- Ainda há testes a serem criados para cobrir um número maior de casos de uso.
+
+### Exemplo de Requisição
+- Faça uma requisição POST HTTP para ```localhost:4568/v1/user``` contendo um body no formato JSON conforme o exemplo:
+```
+    {
+        "type": "PHYSICAL",
+        "name": "John Doe",
+        "cpf": "12345678900",
+        "celPhone": "11987560254",
+        "telPhone": "1139876543",
+        "email": "john.doe@gmail.com",
+        "cep": "01234-567",
+        "streetName": "Rua dos Bosques",
+        "streetNumber": "1234",
+        "complement": "ap23",
+        "neighborhood": "Barra Rasa",
+        "city": "São Paulo",
+        "state": "SP",
+      }
+```
