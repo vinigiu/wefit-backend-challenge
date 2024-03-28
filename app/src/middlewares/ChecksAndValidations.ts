@@ -14,7 +14,7 @@ export default class CheckAndValidations {
     if (!bodyData.type)
       throw new AppError('Type of person is needed.', 400);
 
-    if (bodyData.type == 'JURIDICAL' && !bodyData.cnpj)
+    if (bodyData.type == PersonType.JURIDICAL && !bodyData.cnpj)
       throw new AppError('CNPJ is needed for Juridical type of person.', 400);
 
     if (!bodyData.cpf) throw new AppError('CPF is needed.', 400);
